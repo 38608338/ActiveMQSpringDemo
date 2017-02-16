@@ -42,14 +42,23 @@
 	<!-- Spring Application Context Listener Start -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:applicationContext.xml,classpath*:ActiveMQ.xml</param-value>
+		<param-value>classpath*:applicationContext.xml,classpath*:ActiveMQ.xml;classpath:applicationContext-cxf.xml</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<!-- Spring Application Context Listener End -->
 
-
+	<!-- CXF配置 --> 
+    <servlet>
+        <servlet-name>CXFService</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CXFService</servlet-name>
+        <url-pattern>/webservice/*</url-pattern>
+    </servlet-mapping>
+    
 	<!-- Spring MVC Config Start -->
 	<servlet>
 		<servlet-name>SpringMVC</servlet-name>
